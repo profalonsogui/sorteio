@@ -1,3 +1,4 @@
+// Referências dos elementos da página
 const temasEl = document.getElementById("temas");
 const gruposEl = document.getElementById("grupos");
 const sortearBtn = document.getElementById("sortearBtn");
@@ -7,6 +8,7 @@ const mensagemEl = document.getElementById("mensagem");
 const resultadoSection = document.getElementById("resultadoSection");
 const resultadoEl = document.getElementById("resultado");
 
+// Converte o texto do textarea em lista (ignora linhas vazias)
 function parseLinhas(texto) {
   return texto
     .split("\n")
@@ -14,6 +16,7 @@ function parseLinhas(texto) {
     .filter((linha) => linha.length > 0);
 }
 
+// Embaralha a lista aleatoriamente (Fisher-Yates)
 function embaralhar(lista) {
   const copia = [...lista];
 
@@ -25,11 +28,13 @@ function embaralhar(lista) {
   return copia;
 }
 
+// Exibe feedback na tela (sucesso, erro ou aviso)
 function definirMensagem(texto, tipo = "") {
   mensagemEl.textContent = texto;
   mensagemEl.className = tipo ? `message ${tipo}` : "message";
 }
 
+// Monta e exibe a lista de grupos com seus temas sorteados
 function renderizarResultado(grupos, temasEmbaralhados) {
   resultadoEl.innerHTML = grupos
     .map(
@@ -46,10 +51,12 @@ function renderizarResultado(grupos, temasEmbaralhados) {
   resultadoSection.classList.remove("hidden");
 }
 
+// Valida os dados e realiza o sorteio
 function sortear() {
   const temas = parseLinhas(temasEl.value);
   const grupos = parseLinhas(gruposEl.value);
 
+  // Verifica se os campos foram preenchidos
   if (temas.length === 0 && grupos.length === 0) {
     definirMensagem("Digite pelo menos um tema e um grupo.", "error");
     resultadoSection.classList.add("hidden");
@@ -68,6 +75,7 @@ function sortear() {
     return;
   }
 
+  // Temas e grupos precisam ter a mesma quantidade
   if (temas.length !== grupos.length) {
     definirMensagem(
       `A quantidade de temas (${temas.length}) deve ser igual à de grupos (${grupos.length}).`,
@@ -82,6 +90,7 @@ function sortear() {
   definirMensagem("Sorteio realizado com sucesso!", "success");
 }
 
+// Limpa campos, resultado e mensagens
 function limpar() {
   temasEl.value = "";
   gruposEl.value = "";
@@ -90,6 +99,7 @@ function limpar() {
   definirMensagem("");
 }
 
+// Eventos dos botões
 sortearBtn.addEventListener("click", sortear);
 limparBtn.addEventListener("click", limpar);
 novoSorteioBtn.addEventListener("click", sortear);
