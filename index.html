@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sorteio de Grupos e Temas</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <header class="header">
+        <span class="badge">Sorteio rápido</span>
+        <h1>Sorteio de Grupos e Temas</h1>
+        <p>
+          Digite um tema e um grupo por linha. Depois, clique em
+          <strong>Sortear grupos e temas</strong>.
+        </p>
+      </header>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="temas">Temas</label>
+          <textarea
+            id="temas"
+            placeholder="Exemplo:
+Criptografia
+Segurança em Redes
+Engenharia Social
+Segurança em Aplicações Web"
+          ></textarea>
+          <small>Um tema por linha.</small>
+        </div>
+
+        <div class="field">
+          <label for="grupos">Grupos</label>
+          <textarea
+            id="grupos"
+            placeholder="Exemplo:
+Grupo 1
+Grupo 2
+Grupo 3
+Grupo 4"
+          ></textarea>
+          <small>Um grupo por linha.</small>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="sortearBtn" type="button">🎲 Sortear grupos e temas</button>
+        <button id="limparBtn" class="secondary" type="button">Limpar</button>
+      </div>
+
+      <p id="mensagem" class="message" aria-live="polite"></p>
+
+      <section id="resultadoSection" class="results hidden">
+        <div class="results-header">
+          <div>
+            <span class="badge">Resultado</span>
+            <h2>Grupos sorteados</h2>
+          </div>
+          <button id="novoSorteioBtn" class="secondary small" type="button">
+            Sortear novamente
+          </button>
+        </div>
+
+        <div id="resultado" class="result-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
